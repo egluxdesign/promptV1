@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eglux Prompt Builder</title>
+    <svg id="eglux-logo" style="display: none;">
+        <defs>
+            <g id="eglux-icon">
+                <path d="M36.48,50.54h-19.53c0-.43,0-1.08.03-1.95.02-.87.03-1.51.03-1.95v-16.27c0-.43,0-1.08-.03-1.95-.02-.87-.03-1.51-.03-1.95h18.28c.38,0,.59.11.63.33.04.13.06.25.06.38,0,.18-.04.31-.12.4-.15.13-.39.19-.74.19-.12,0-.27-.01-.47-.03-.19-.02-.32-.03-.38-.03-2.7-.08-4.75-.13-6.17-.13h-1.31v5.54c.22,0,.4,0,.54,0,.14,0,.29.01.45.02.45,0,1.61-.03,3.51-.08,1.89-.05,3.42-.08,4.6-.08.59,0,.89.24.89.71,0,.25-.07.42-.21.5-.14.08-.34.12-.59.12-1.52-.02-3.18-.04-4.96-.06-1.78-.02-3.19-.03-4.22-.03v15.2c.76,0,1.66.02,2.72.07,1.06.05,1.87.07,2.44.07.99,0,2.55-.09,4.7-.27h.09c.34,0,.55.11.62.33.07.22.11.33.11.32,0,.39-.31.59-.93.59Z"/>
+                <path d="M49.71,27.07v22.36c.2,0,.36,0,.49,0s.27.01.42.02c1.45,0,2.77-.17,3.96-.51,1.19-.34,2.31-.96,3.35-1.85,1.17-.99,2.03-2.13,2.59-3.42.56-1.3.98-2.85,1.25-4.65h-9.2s-.09,0-.12,0c-.03,0-.07.01-.11.02-.53,0-.8-.19-.8-.56,0-.23.07-.37.21-.44.14-.07.33-.1.59-.1h10.54c-.08,1.08-.19,2.06-.36,2.96-.16.89-.41,1.76-.75,2.6-.34.84-.78,1.66-1.34,2.45-.84,1.22-1.9,2.21-3.16,2.97-1.26.76-2.64,1.25-4.12,1.47-.85.08-1.52.12-2.01.12-1.76,0-3.42-.35-4.96-1.05-1.55-.7-2.89-1.74-4.04-3.14-.96-1.17-1.68-2.44-2.16-3.81-.48-1.37-.73-2.75-.73-4.15,0-1.6.29-3.14.86-4.64.57-1.49,1.39-2.83,2.46-4.03,1.07-1.19,2.32-2.13,3.77-2.82,1.45-.69,3.02-1.03,4.72-1.03.74.02,1.46.09,2.17.21.71.12,1.4.31,2.07.57.67.26,1.31.58,1.91.97,1.86,1.26,2.98,2.34,3.37,3.22.04.12.06.23.06.34,0,.34-.14.5-.43.5-.14,0-.33-.11-.55-.32s-.47-.47-.72-.76c-.25-.3-.45-.53-.59-.7-.77-.67-1.56-1.22-2.36-1.64-.81-.42-1.64-.73-2.49-.93-.85-.2-1.75-.3-2.7-.3-.22,0-.41,0-.56,0-.16,0-.33.01-.52.02Z"/>
+                <path d="M64.3,50.54h2.56c0-.51.01-1.27.03-2.29.02-1.02.03-1.78.03-2.29v-19.15c0-.51-.01-1.27-.03-2.29-.02-1.02-.03-1.78-.03-2.29h11.5c-.1,1.84-.15,3.37-.15,4.58v17.94c0,1.16.05,2.65.15,4.49.49,0,.9,0,1.21,0,.31,0,.66.02,1.03.03,3.36,0,6.37-.1,9.03-.3h.17c.37,0,.6.11.69.34.08.19.12.37.12.54,0,.46-.37.69-1.11.69h-25.2Z"/>
+                <path d="M93.48,42.53v-10.15c0-.38,0-.94-.02-1.69-.02-.75-.02-1.31-.02-1.69h8.44c-.02.73-.03,1.38-.05,1.93-.02.55-.02,1.02-.02,1.39v17.3c1.18,0,2.23-.05,3.15-.14.92-.1,1.82-.34,2.68-.74.86-.4,1.58-1.01,2.15-1.85.39-.55.68-1.16.87-1.82.19-.66.32-1.36.38-2.09.06-.73.1-1.52.12-2.37.05-1.74.07-4.35.07-7.84,0-.15,0-.27,0-.38,0-.11-.01-.27-.02-.49,0-.22-.02-.47-.03-.76-.01-.29-.02-.54-.02-.76,0-.68.04-1.13.12-1.36.07-.13.21-.19.43-.19.33,0,.52.11.56.32.03.11.05.56.05,1.35s-.02,1.84-.05,3.26c-.03,1.42-.05,2.12-.05,2.09-.02,2.19-.05,3.85-.1,5-.05,1.14-.17,2.26-.36,3.36-.31,1.81-1.02,3.25-2.13,4.31-.79.71-1.8,1.23-3.04,1.55-1.23.32-2.53.47-3.88.47-1.05,0-2-.06-2.87-.18-1.5-.19-2.72-.58-3.65-1.17-.93-.59-1.62-1.43-2.05-2.53-.44-1.09-.66-2.47-.66-4.13Z"/>
+                <path d="M121.61,40.66l-3.28-5.84c-.37-.66-.96-1.63-1.76-2.91-.8-1.27-1.4-2.23-1.79-2.88h9.83c.41.78,1.21,2.18,2.39,4.2l2.08,3.51,2.16-3.05c.05-.07.61-.88,1.66-2.42,1.06-1.54,1.64-2.33,1.74-2.37.1-.04.21-.06.32-.06.2,0,.37.07.5.2.07.11.1.24.1.38,0,.22-.06.41-.18.58-.44.64-.99,1.38-1.66,2.22-.67.84-1.17,1.49-1.51,1.95l-2.58,3.56,4.37,7.47c.17.29.41.69.72,1.19.31.51.62,1,.93,1.49.31.49.59.92.84,1.31.25.38.5.78.76,1.19h-10.27c-.25-.55-.49-1.04-.7-1.46-.21-.42-.44-.85-.67-1.29-.24-.44-.53-.97-.89-1.59l-2.55-4.41c-.78,1.06-1.59,2.16-2.42,3.31-.83,1.15-1.56,2.19-2.18,3.14-.29.46-.55.88-.79,1.26s-.47.71-.7.99c-.2.15-.41.22-.62.22-.16,0-.28-.04-.34-.11-.14-.12-.2-.27-.2-.44,0-.22.12-.52.36-.88,1.61-2,2.62-3.29,3.02-3.86,1.62-2.25,2.73-3.78,3.33-4.59Z"/>
+            </g>
+        </defs>
+    </svg>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f5f3ff',
+                            100: '#ede9fe',
+                            200: '#ddd6fe',
+                            300: '#c4b5fd',
+                            400: '#a78bfa',
+                            500: '#8b5cf6',
+                            600: '#7c3aed',
+                            700: '#6d28d9',
+                            800: '#5b21b6',
+                            900: '#4c1d95',
+                        },
+                        accent: {
+                            500: '#f59e0b',
+                            600: '#d97706',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .prompt-card { transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
+        .prompt-card:hover { transform: translateY(-3px); box-shadow: 0 10px 40px -10px rgba(0,0,0,0.15); }
+        .param-chip { transition: all 0.15s ease; }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in { animation: fadeIn 0.35s ease-out; }
+        @keyframes slideIn { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
+        .animate-slide-in { animation: slideIn 0.3s ease-out; }
+        @keyframes pulse-soft { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+        .animate-pulse-soft { animation: pulse-soft 2s ease-in-out infinite; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .dark .glass-panel {
+            background: rgba(17, 24, 39, 0.7);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #7c3aed 0%, #c026d3 50%, #f59e0b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #cba65a 0%, #cba65a 50%, #cba65a 100%);
+        }
+        .gradient-border {
+            position: relative;
+        }
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            padding: 2px;
+            background: linear-gradient(135deg, #8b5cf6, #c026d3, #f59e0b);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+    </style>
+
+<base target="_blank">
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useCallback, useRef, useMemo } = React;
+
+        // ===================== ICONS =====================
+        const Icons = {
+            Copy: () => React.createElement('svg', { width: 16, height: 16, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round' }, React.createElement('rect', { x: 9, y: 9, width: 13, height: 13, rx: 2, ry: 2 }), React.createElement('path', { d: 'M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1' })),
+            Save: () => React.createElement('svg', { width: 16, height: 16, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round' }, React.createElement('path', { d: 'M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z' }), React.createElement('polyline', { points: '17 21 17 13 7 13 7 21' }), React.createElement('polyline', { points: '7 3 7 8 15 8' })),
+            Trash: () => React.createElement('svg', { width: 16, height: 16, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round' }, React.createElement('polyline', { points: '3 6 5 6 21 6' }), React.createElement('path', { d: 'M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2' })),
+            Sparkles: () => React.createElement('svg', { width: 18, height: 18, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round' }, React.createElement('path', { d: 'm12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z' }), React.createElement('path', { d: 'M5 3v4' }), React.createElement('path', { d: 'M19 17v4' }), React.createElement('path', { d: 'M3 5h4' }), React.createElement('path', { d: 'M17 19h4' })),
+            Image: () => React.createElement('svg', { width: 16, height: 16, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round' }, React.createElement('rect', { x: 3, y: 3, width: 18, height: 18, rx: 2, ry: 2 }), React.createElement('circle', { cx: 8.5, cy: 8.5, r: 1.5 }), React.createElement('polyline', { points: '21 15 16 10 5 21' })),
+            Download: () => React.createElement('svg', { width: 16, height: 16, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round' }, React.createElement('path', { d: 'M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4' }), React.createElement('polyline', { points: '7 10 12 15 17 10' }), React.createElement('line', { x1: 12, y1: 15, x2: 12, y2: 3 })),
+            Upload: () => React.createElement('svg', { width: 16, height: 16, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round' }, React.createElement('path', { d: 'M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4' }), React.createElement('polyline', { points: '17 8 12 3 7 8' }), React.createElement('line', { x1: 12, y1: 3, x2: 12, y2: 15 })),
+            History: () => React.createElement('svg', { width: 16, height: 16, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round' }, React.createElement('path', { d: 'M3 3v5h5' }), React.createElement('path', { d: 'M3.05 13A9 9 0 1 0 6 5.3L3 8' }), React.createElement('path', { d: 'M12 7v5l4 2' })),
+            Check: () => React.createElement('svg', { width: 16, height: 16, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round' }, React.createElement('polyline', { points: '20 6 9 17 4 12' })),
+            Palette: () => React.createElement('svg', { width: 16, height: 16, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round' }, React.createElement('circle', { cx: 13.5, cy: 6.5, r: 0.5, fill: "currentColor" }), React.createElement('circle', { cx: 17.5, cy: 10.5, r: 0.5, fill: "currentColor" }), React.createElement('circle', { cx: 8.5, cy: 7.5, r: 0.5, fill: "currentColor" }), React.createElement('circle', { cx: 6.5, cy: 12.5, r: 0.5, fill: "currentColor" }), React.createElement('path', { d: 'M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z' })),
+            Edit: () => React.createElement('svg', { width: 16, height: 16, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round' }, React.createElement('path', { d: 'M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7' }), React.createElement('path', { d: 'M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z' })),
+            Plus: () => React.createElement('svg', { width: 16, height: 16, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round' }, React.createElement('line', { x1: 12, y1: 5, x2: 12, y2: 19 }), React.createElement('line', { x1: 5, y1: 12, x2: 19, y2: 12 })),
+            Grid: () => React.createElement('svg', { width: 16, height: 16, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round' }, React.createElement('rect', { x: 3, y: 3, width: 7, height: 7 }), React.createElement('rect', { x: 14, y: 3, width: 7, height: 7 }), React.createElement('rect', { x: 14, y: 14, width: 7, height: 7 }), React.createElement('rect', { x: 3, y: 14, width: 7, height: 7 })),
+            FileText: () => React.createElement('svg', { width: 16, height: 16, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round' }, React.createElement('path', { d: 'M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z' }), React.createElement('polyline', { points: '14 2 14 8 20 8' }), React.createElement('line', { x1: 16, y1: 13, x2: 8, y2: 13 }), React.createElement('line', { x1: 16, y1: 17, x2: 8, y2: 17 }), React.createElement('line', { x1: 10, y1: 9, x2: 8, y2: 9 })),
+            X: () => React.createElement('svg', { width: 16, height: 16, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round' }, React.createElement('line', { x1: 18, y1: 6, x2: 6, y2: 18 }), React.createElement('line', { x1: 6, y1: 6, x2: 18, y2: 18 })),
+            ChevronDown: () => React.createElement('svg', { width: 16, height: 16, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round' }, React.createElement('polyline', { points: '6 9 12 15 18 9' })),
+            Zap: () => React.createElement('svg', { width: 16, height: 16, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round' }, React.createElement('polygon', { points: '13 2 3 14 12 14 11 22 21 10 12 10 13 2' })),
+        };
+
+        // ===================== PARAMETER OPTIONS =====================
+        const PARAMETER_OPTIONS = {
+            style: ['Minimalist', 'Luxury', 'Vintage', 'Modern', 'Brutalist', 'Organic', 'Tech/Cyber', 'Soft/Pastel', 'Bold/Contrast', 'Editorial Magazine', 'Scandinavian', 'Industrial', 'Bohemian', 'Art Deco'],
+            lighting: ['warm luxury interior lighting atmosphere', 'cinematic ambient lighting with soft shadows', 'bright natural diffused daylight', 'warm golden sunset lighting with elegant reflections', 'warm soft morning sunlight through window', 'Soft box studio', 'Natural window light', 'Golden hour', 'Dramatic side light', 'Backlit/Rim light', 'Neon/Cyberpunk', 'Overcast flat', 'High contrast', 'Warm ambient', 'Cool clinical', 'Candle light', 'Studio flash'],
+            angle: ['cinematic close-up composition', 'macro detail photography with shallow depth of field', 'eye-level realistic lifestyle shot', 'top-down flatlay composition', '3/4 editorial camera angle with balanced composition', 'Eye level (0°)', 'Top down (90°)', '45 degree hero', 'Macro close-up', 'Low angle (worm)', 'High angle (bird)', 'Dutch tilt', 'Flat lay', 'Profile side view'],
+            background: ['Solid color', 'Gradient', 'Lifestyle scene', 'Bokeh/Blur', 'Transparent/White', 'Textured surface', 'Infinite curve', 'Urban outdoor', 'Nature/Organic', 'Abstract pattern'],
+            mood: ['calm minimalist living atmosphere', 'elegant premium hosting environment', 'modern hotel living atmosphere', 'pinterest-inspired soft lifestyle atmosphere', 'quiet luxury atmosphere with premium aesthetic', 'Calm/Peaceful', 'Energetic/Dynamic', 'Mysterious/Dark', 'Premium/Luxe', 'Playful/Fun', 'Professional/Corporate', 'Cozy/Warm', 'Futuristic', 'Nostalgic', 'Romantic/Soft'],
+            aspectRatio: ['1:1 (Square)', '4:5 (Instagram)', '9:16 (Stories/Reels)', '16:9 (Landscape)', '3:2 (Classic)', '2:3 (Portrait)', '21:9 (Cinematic)'],
+            quality: ['ultra high resolution editorial quality', 'soft luxury shadow rendering', 'cinematic color grading and elegant tones', 'premium commercial photography quality', 'ultra realistic highly detailed rendering', 'Standard', 'High detail', 'Ultra HD', 'Photorealistic', 'Illustration style', '3D Render', 'Analog/Film', 'Watercolor', 'Vector/Flat'],
+            camera: ['DSLR 50mm', 'DSLR 85mm portrait', 'Wide angle 24mm', 'Macro 100mm', 'iPhone/Smartphone', 'Vintage film camera', 'Medium format', 'Drone/Aerial', 'GoPro action', 'Mirrorless 35mm'],
+            colorGrade: ['Warm tones', 'Cool tones', 'Desaturated/Muted', 'High saturation', 'Monochrome/BW', 'Sepia', 'Teal & Orange', 'Natural/True color', 'Pastel tones', 'Duo tone'],
+            subjectModifier: ['Close-up', 'Full body', 'Detail shot', 'Group/Collection', 'In context/Lifestyle', 'Floating/Levitating', 'Exploded view', 'Before/After']
+        };
+
+        const DEFAULT_BASE_PROMPTS = [
+            {
+                id: 'default-1',
+                name: 'Product Hero Shot',
+                category: 'Product Photo',
+                basePrompt: 'A premium {subject} photographed in a minimalist studio setting with soft box lighting, clean composition, subtle surface reflection, professional commercial photography style, ultra high detail, photorealistic rendering, sharp focus on product, neutral background with gentle gradient',
+                description: 'Classic e-commerce product photography dengan lighting studio',
+                tags: ['ecommerce', 'studio', 'clean'],
+                isDefault: true
+            },
+            {
+                id: 'default-2',
+                name: 'Instagram Feed Aesthetic',
+                category: 'Social Media',
+                basePrompt: 'Aesthetic lifestyle photo of {subject} on marble table, natural window light, flat lay composition, morning vibes, soft shadows, warm tones, instagram aesthetic, cozy atmosphere, lifestyle content photography, high detail, smartphone photography style',
+                description: 'Konten Instagram dengan tone warm dan lifestyle feel',
+                tags: ['instagram', 'lifestyle', 'flatlay'],
+                isDefault: true
+            },
+            {
+                id: 'default-3',
+                name: 'Editorial Fashion',
+                category: 'Editorial',
+                basePrompt: 'High fashion editorial portrait of {subject}, dramatic side lighting, vogue style composition, sharp focus, haute couture vibe, desaturated muted color palette, medium format camera quality, ultra HD detail, professional fashion photography, textured background',
+                description: 'High fashion editorial dengan dramatic lighting',
+                tags: ['fashion', 'editorial', 'vogue'],
+                isDefault: true
+            },
+            {
+                id: 'default-4',
+                name: 'Tech Gadget Modern',
+                category: 'Product Photo',
+                basePrompt: 'Futuristic product shot of {subject}, neon cyberpunk lighting, dark gradient background, floating product presentation, holographic accents, tech advertisement style, 3D render quality, crisp details, cool tones, wide angle perspective, high contrast',
+                description: 'Gadget/electronics dengan feel futuristic dan clean',
+                tags: ['tech', 'cyberpunk', '3d'],
+                isDefault: true
+            },
+            {
+                id: 'default-5',
+                name: 'Food Photography',
+                category: 'Social Media',
+                basePrompt: 'Appetizing food photography of {subject}, natural window light, rustic wood table background, steam rising, fresh ingredients visible, 45 degree hero angle, warm color grade, food stylist composition, photorealistic, commercial food photography',
+                description: 'Appetizing food shot untuk menu atau konten kuliner',
+                tags: ['food', 'culinary', 'appetizing'],
+                isDefault: true
+            },
+            {
+                id: 'default-6',
+                name: 'Vintage Analog',
+                category: 'Editorial',
+                basePrompt: 'Vintage analog film photo of {subject}, warm ambient lighting, macro close-up, film grain texture, light leaks, shallow depth of field, sepia color grade, nostalgic mood, timeless elegance, vintage film camera aesthetic, soft focus edges',
+                description: 'Feel foto analog dengan grain dan warm tones',
+                tags: ['vintage', 'analog', 'film'],
+                isDefault: true
+            }
+        ];
+
+        // ===================== UTILS =====================
+        const useLocalStorage = (key, initialValue) => {
+            const [storedValue, setStoredValue] = useState(() => {
+                try {
+                    const item = window.localStorage.getItem(key);
+                    return item ? JSON.parse(item) : initialValue;
+                } catch (error) {
+                    return initialValue;
+                }
+            });
+            const setValue = (value) => {
+                try {
+                    const valueToStore = value instanceof Function ? value(storedValue) : value;
+                    setStoredValue(valueToStore);
+                    window.localStorage.setItem(key, JSON.stringify(valueToStore));
+                } catch (error) {
+                    console.log(error);
+                }
+            };
+            return [storedValue, setValue];
+        };
+
+        const generateFinalPrompt = (basePrompt, params, extra) => {
+            let prompt = basePrompt || '';
+
+            // Replace {subject} placeholder
+            if (params.subject) {
+                prompt = prompt.replace(/\{subject\}/g, params.subject);
+            } else {
+                prompt = prompt.replace(/\{subject\}/g, 'product');
+            }
+
+            const additions = [];
+            if (params.style && params.style !== 'Standard') additions.push(`${params.style.toLowerCase()} style`);
+            if (params.lighting) additions.push(`${params.lighting.toLowerCase()}`);
+            if (params.angle) additions.push(`shot from ${params.angle.toLowerCase()}`);
+            if (params.background) additions.push(`${params.background.toLowerCase()} background`);
+            if (params.mood) additions.push(`${params.mood.toLowerCase()} mood`);
+            if (params.camera) additions.push(`captured with ${params.camera.toLowerCase()}`);
+            if (params.colorGrade) additions.push(`color graded with ${params.colorGrade.toLowerCase()}`);
+            if (params.subjectModifier) additions.push(`${params.subjectModifier.toLowerCase()}`);
+            if (params.quality && params.quality !== 'Standard') additions.push(`${params.quality.toLowerCase()}`);
+            if (params.aspectRatio) additions.push(`aspect ratio ${params.aspectRatio.split(' ')[0]}`);
+
+            if (additions.length > 0) {
+                prompt += '. Additional details: ' + additions.join(', ') + '.';
+            }
+
+            if (extra && extra.trim()) {
+                prompt += ' ' + extra.trim();
+            }
+
+            return prompt;
+        };
+
+        const parseCSV = (csvText) => {
+            const lines = csvText.trim().split('\n');
+            if (lines.length < 2) return [];
+
+            const headers = lines[0].split(',').map(h => h.trim().replace(/^"|"$/g, ''));
+            const result = [];
+
+            for (let i = 1; i < lines.length; i++) {
+                const values = lines[i].split(',').map(v => v.trim().replace(/^"|"$/g, ''));
+                if (values.length < 2) continue;
+
+                const obj = {};
+                headers.forEach((h, idx) => {
+                    obj[h.toLowerCase().replace(/\s+/g, '')] = values[idx] || '';
+                });
+
+                result.push({
+                    id: `imported-${Date.now()}-${i}`,
+                    name: obj.name || obj.nama || obj.title || `Imported ${i}`,
+                    category: obj.category || obj.kategori || 'Uncategorized',
+                    basePrompt: obj.baseprompt || obj.prompt || obj.base || obj.template || '',
+                    description: obj.description || obj.desc || obj.deskripsi || '',
+                    tags: (obj.tags || obj.tag || '').split(/[,;]/).map(t => t.trim()).filter(Boolean),
+                    isDefault: false
+                });
+            }
+
+            return result.filter(p => p.basePrompt && p.name);
+        };
+
+        // ===================== UI COMPONENTS =====================
+        const Select = ({ label, value, options, onChange, placeholder, className = '' }) => (
+            React.createElement('div', { className: `mb-3 ${className}` },
+                React.createElement('label', { className: 'block text-[11px] font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1' }, label),
+                React.createElement('div', { className: 'relative' },
+                    React.createElement('select', {
+                        value: value || '',
+                        onChange: (e) => onChange(e.target.value),
+                        className: 'w-full px-3 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all cursor-pointer appearance-none'
+                    }, [
+                        React.createElement('option', { key: 'empty', value: '' }, placeholder || 'Pilih...'),
+                        ...options.map(opt => React.createElement('option', { key: opt, value: opt }, opt))
+                    ]),
+                    React.createElement('div', { className: 'absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400' }, React.createElement(Icons.ChevronDown))
+                )
+            )
+        );
+
+        const TextInput = ({ label, value, onChange, placeholder, className = '' }) => (
+            React.createElement('div', { className: `mb-3 ${className}` },
+                React.createElement('label', { className: 'block text-[11px] font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1' }, label),
+                React.createElement('input', {
+                    type: 'text',
+                    value: value || '',
+                    onChange: (e) => onChange(e.target.value),
+                    placeholder: placeholder,
+                    className: 'w-full px-3 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all'
+                })
+            )
+        );
+
+        const TextArea = ({ label, value, onChange, placeholder, rows = 3, className = '' }) => (
+            React.createElement('div', { className: `mb-3 ${className}` },
+                React.createElement('label', { className: 'block text-[11px] font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1' }, label),
+                React.createElement('textarea', {
+                    value: value || '',
+                    onChange: (e) => onChange(e.target.value),
+                    placeholder: placeholder,
+                    rows: rows,
+                    className: 'w-full px-3 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all resize-none'
+                })
+            )
+        );
+
+        const Button = ({ children, onClick, variant = 'primary', className = '', icon: Icon, disabled = false }) => {
+            const variants = {
+                primary: 'bg-brand-600 hover:bg-brand-700 text-white shadow-sm shadow-brand-500/20',
+                secondary: 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200',
+                danger: 'bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 hover:bg-red-100 dark:hover:bg-red-900/30 text-red-600 dark:text-red-400',
+                ghost: 'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-400',
+                accent: 'bg-accent-500 hover:bg-accent-600 text-white shadow-sm shadow-accent-500/20',
+                outline: 'border-2 border-brand-500 text-brand-600 dark:text-brand-400 hover:bg-brand-50 dark:hover:bg-brand-900/20'
+            };
+            return React.createElement('button', {
+                onClick: onClick,
+                disabled: disabled,
+                className: `inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed ${variants[variant]} ${className}`
+            }, Icon && React.createElement(Icon), children);
+        };
+
+        const Badge = ({ children, color = 'brand', size = 'sm' }) => {
+            const colors = {
+                brand: 'bg-brand-50 text-brand-700 dark:bg-brand-900/30 dark:text-brand-300',
+                green: 'bg-green-50 text-green-700 dark:bg-green-900/30 dark:text-green-300',
+                purple: 'bg-purple-50 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300',
+                orange: 'bg-orange-50 text-orange-700 dark:bg-orange-900/30 dark:text-orange-300',
+                gray: 'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300',
+                blue: 'bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300',
+                pink: 'bg-pink-50 text-pink-700 dark:bg-pink-900/30 dark:text-pink-300',
+            };
+            const sizes = { sm: 'px-2 py-0.5 text-[10px]', md: 'px-2.5 py-1 text-xs' };
+            return React.createElement('span', { className: `inline-flex items-center rounded-full font-medium ${colors[color]} ${sizes[size]}` }, children);
+        };
+
+        const Modal = ({ isOpen, onClose, title, children, maxWidth = 'max-w-lg' }) => {
+            if (!isOpen) return null;
+            return React.createElement('div', { className: 'fixed inset-0 z-50 flex items-center justify-center p-4' }, [
+                React.createElement('div', { key: 'backdrop', className: 'absolute inset-0 bg-black/50 backdrop-blur-sm', onClick: onClose }),
+                React.createElement('div', { key: 'modal', className: `relative bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full ${maxWidth} max-h-[90vh] overflow-y-auto animate-fade-in` }, [
+                    React.createElement('div', { key: 'header', className: 'flex items-center justify-between p-5 border-b border-gray-100 dark:border-gray-700' }, [
+                        React.createElement('h3', { className: 'text-lg font-bold text-gray-900 dark:text-white' }, title),
+                        React.createElement('button', { onClick: onClose, className: 'p-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-500 transition-colors' }, React.createElement(Icons.X))
+                    ]),
+                    React.createElement('div', { key: 'body', className: 'p-5' }, children)
+                ])
+            ]);
+        };
+
+        // ===================== MAIN APP =====================
+        const App = () => {
+            const [activeTab, setActiveTab] = useLocalStorage('yogi_active_tab', 'builder');
+            const [darkMode, setDarkMode] = useLocalStorage('yogi_dark_mode', false);
+            const [basePrompts, setBasePrompts] = useLocalStorage('yogi_base_prompts', DEFAULT_BASE_PROMPTS);
+            const [savedPrompts, setSavedPrompts] = useLocalStorage('yogi_saved_prompts', []);
+            const [history, setHistory] = useLocalStorage('yogi_history', []);
+            const [copied, setCopied] = useState(false);
+            const [searchBank, setSearchBank] = useState('');
+            const [selectedBaseId, setSelectedBaseId] = useState(null);
+            const [showImportModal, setShowImportModal] = useState(false);
+            const [showAddModal, setShowAddModal] = useState(false);
+            const [editingPrompt, setEditingPrompt] = useState(null);
+            const [importText, setImportText] = useState('');
+            const [importError, setImportError] = useState('');
+            const [filterCategory, setFilterCategory] = useState('All');
+
+            const defaultParams = {
+                subject: '',
+                style: '',
+                lighting: '',
+                angle: '',
+                background: '',
+                mood: '',
+                aspectRatio: '',
+                quality: '',
+                camera: '',
+                colorGrade: '',
+                subjectModifier: ''
+            };
+
+            const [params, setParams] = useState(defaultParams);
+            const [extraPrompt, setExtraPrompt] = useState('');
+            const [promptName, setPromptName] = useState('');
+
+            useEffect(() => {
+                if (darkMode) document.documentElement.classList.add('dark');
+                else document.documentElement.classList.remove('dark');
+            }, [darkMode]);
+
+            const selectedBase = useMemo(() => 
+                basePrompts.find(p => p.id === selectedBaseId) || null
+            , [basePrompts, selectedBaseId]);
+
+            const updateParam = (key, value) => {
+                setParams(prev => ({ ...prev, [key]: value }));
+            };
+
+            const currentPrompt = useMemo(() => 
+                generateFinalPrompt(selectedBase?.basePrompt || '', params, extraPrompt)
+            , [selectedBase, params, extraPrompt]);
+
+            const handleCopy = () => {
+                if (!currentPrompt) return;
+                navigator.clipboard.writeText(currentPrompt);
+                setCopied(true);
+                setTimeout(() => setCopied(false), 2000);
+                addToHistory();
+            };
+
+            const addToHistory = () => {
+                if (!currentPrompt) return;
+                const entry = {
+                    id: Date.now(),
+                    prompt: currentPrompt,
+                    baseName: selectedBase?.name || 'Custom',
+                    params: { ...params },
+                    extra: extraPrompt,
+                    timestamp: new Date().toISOString()
+                };
+                setHistory(prev => [entry, ...prev].slice(0, 100));
+            };
+
+            const handleSave = () => {
+                if (!promptName.trim() || !currentPrompt) return;
+                const newPrompt = {
+                    id: Date.now().toString(),
+                    name: promptName,
+                    baseId: selectedBaseId,
+                    baseName: selectedBase?.name || 'Custom',
+                    params: { ...params },
+                    extra: extraPrompt,
+                    finalPrompt: currentPrompt,
+                    createdAt: new Date().toISOString()
+                };
+                setSavedPrompts(prev => [newPrompt, ...prev]);
+                setPromptName('');
+            };
+
+            const handleDeleteSaved = (id) => {
+                setSavedPrompts(prev => prev.filter(p => p.id !== id));
+            };
+
+            const handleLoadSaved = (prompt) => {
+                if (prompt.baseId) {
+                    setSelectedBaseId(prompt.baseId);
+                }
+                setParams(prompt.params);
+                setExtraPrompt(prompt.extra || '');
+                setPromptName(prompt.name);
+                setActiveTab('builder');
+            };
+
+            const handleDeleteBase = (id) => {
+                if (window.confirm('Yakin mau hapus base prompt ini?')) {
+                    setBasePrompts(prev => prev.filter(p => p.id !== id));
+                    if (selectedBaseId === id) {
+                        setSelectedBaseId(null);
+                    }
+                }
+            };
+
+            const handleImport = () => {
+                setImportError('');
+                if (!importText.trim()) {
+                    setImportError('Paste CSV atau JSON dari Google Sheets');
+                    return;
+                }
+
+                let imported = [];
+                try {
+                    // Try JSON first
+                    if (importText.trim().startsWith('[') || importText.trim().startsWith('{')) {
+                        const jsonData = JSON.parse(importText);
+                        if (Array.isArray(jsonData)) {
+                            imported = jsonData.map((item, i) => ({
+                                id: `imported-${Date.now()}-${i}`,
+                                name: item.name || item.title || item.Nama || `Imported ${i+1}`,
+                                category: item.category || item.kategori || item.Kategori || 'Imported',
+                                basePrompt: item.basePrompt || item.prompt || item.template || item['Base Prompt'] || item.Prompt || '',
+                                description: item.description || item.desc || item.Deskripsi || '',
+                                tags: (item.tags || item.tag || item.Tags || '').toString().split(/[,;]/).map(t => t.trim()).filter(Boolean),
+                                isDefault: false
+                            }));
+                        }
+                    } else {
+                        // CSV
+                        imported = parseCSV(importText);
+                    }
+
+                    imported = imported.filter(p => p.basePrompt && p.name);
+
+                    if (imported.length === 0) {
+                        setImportError('Gak ada data valid yang bisa diimport. Pastikan ada kolom "name" dan "basePrompt".');
+                        return;
+                    }
+
+                    setBasePrompts(prev => [...imported, ...prev]);
+                    setImportText('');
+                    setShowImportModal(false);
+                    setActiveTab('bank');
+                } catch (e) {
+                    setImportError('Format gak valid. Coba paste CSV dari Google Sheets atau array JSON.');
+                }
+            };
+
+            const handleAddBase = (newPrompt) => {
+                setBasePrompts(prev => [{ ...newPrompt, id: `custom-${Date.now()}`, isDefault: false }, ...prev]);
+                setShowAddModal(false);
+            };
+
+            const handleUpdateBase = (updated) => {
+                setBasePrompts(prev => prev.map(p => p.id === updated.id ? updated : p));
+                setEditingPrompt(null);
+            };
+
+            const handleExport = () => {
+                const data = {
+                    basePrompts: basePrompts.filter(p => !p.isDefault),
+                    savedPrompts: savedPrompts,
+                    history: history,
+                    exportedAt: new Date().toISOString(),
+                    app: 'Prompt Builder by Yogienugr'
+                };
+                const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `yogienugr-prompts-${Date.now()}.json`;
+                a.click();
+                URL.revokeObjectURL(url);
+            };
+
+            const handleReset = () => {
+                setParams(defaultParams);
+                setExtraPrompt('');
+                setPromptName('');
+            };
+
+            const categories = ['All', ...new Set(basePrompts.map(p => p.category))];
+
+            const filteredBank = basePrompts.filter(p => {
+                const matchesSearch = p.name.toLowerCase().includes(searchBank.toLowerCase()) ||
+                    p.category.toLowerCase().includes(searchBank.toLowerCase()) ||
+                    (p.tags && p.tags.some(t => t.toLowerCase().includes(searchBank.toLowerCase())));
+                const matchesCategory = filterCategory === 'All' || p.category === filterCategory;
+                return matchesSearch && matchesCategory;
+            });
+
+            const categoryColors = {
+                'Product Photo': 'blue',
+                'Social Media': 'purple',
+                'Editorial': 'orange',
+                'Imported': 'green',
+                'Uncategorized': 'gray'
+            };
+
+            // ===================== RENDER =====================
+            return React.createElement('div', { className: 'min-h-screen bg-gray-50 dark:bg-gray-900' },
+                // Header
+                React.createElement('header', { className: 'sticky top-0 z-40 glass-panel border-b border-gray-200 dark:border-gray-800' },
+                    React.createElement('div', { className: 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between' },
+                        React.createElement('div', { className: 'flex items-center gap-3' },
+                            React.createElement('div', { className: 'w-10 h-10 rounded-xl flex items-center justify-center overflow-hidden shadow-lg shadow-brand-500/30 bg-transparent' },
+                                React.createElement('img', { src: 'data:image/png;base64,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', className: 'w-full h-full object-contain', alt: 'Eglux Logo' })
+                            ),
+                            React.createElement('div', null,
+                                React.createElement('h1', { className: 'text-lg font-bold leading-tight' }, 
+                                    React.createElement('span', { className: 'gradient-text' }, 'EGLUX'),
+                                    React.createElement('span', { className: 'text-gray-900 dark:text-white' }, ' Prompt Builder')
+                                ),
+                                React.createElement('p', { className: 'text-[11px] text-gray-500 dark:text-gray-400 font-medium' }, 'AI Base Prompt Management by Yogienugr')
+                            )
+                        ),
+                        React.createElement('div', { className: 'flex items-center gap-2' },
+                            React.createElement('button', {
+                                onClick: () => setDarkMode(!darkMode),
+                                className: 'p-2.5 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-400 transition-colors'
+                            }, darkMode ? '☀️' : '🌙'),
+                            React.createElement(Button, { onClick: () => window.location.href = 'gallery.html', variant: 'secondary', icon: Icons.Image, className: 'hidden sm:inline-flex' }, 'Gallery'),
+                            React.createElement(Button, { onClick: handleExport, variant: 'secondary', icon: Icons.Download, className: 'hidden sm:inline-flex' }, 'Export')
+                        )
+                    )
+                ),
+
+                // Navigation Tabs
+                React.createElement('div', { className: 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6' },
+                    React.createElement('div', { className: 'flex space-x-1 bg-gray-100/80 dark:bg-gray-800/80 backdrop-blur p-1 rounded-2xl w-fit' },
+                        [
+                            { id: 'builder', label: 'Prompt Builder', icon: Icons.Sparkles },
+                            { id: 'bank', label: 'Base Prompt Bank', icon: Icons.Grid },
+                            { id: 'saved', label: 'My Prompts', icon: Icons.Save },
+                            { id: 'history', label: 'History', icon: Icons.History }
+                        ].map(tab => 
+                            React.createElement('button', {
+                                key: tab.id,
+                                onClick: () => setActiveTab(tab.id),
+                                className: `flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all ${
+                                    activeTab === tab.id 
+                                    ? 'bg-white dark:bg-gray-700 text-brand-600 dark:text-brand-400 shadow-sm' 
+                                    : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
+                                }`
+                            }, React.createElement(tab.icon), tab.label)
+                        )
+                    )
+                ),
+
+                // Main Content
+                React.createElement('main', { className: 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 pb-24' },
+
+                    // ====== BUILDER TAB ======
+                    activeTab === 'builder' && React.createElement('div', { className: 'grid grid-cols-1 lg:grid-cols-12 gap-6 animate-fade-in' },
+                        // Left Panel
+                        React.createElement('div', { className: 'lg:col-span-5 space-y-5' },
+                            // Base Prompt Selector
+                            React.createElement('div', { className: 'bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-5 shadow-sm' },
+                                React.createElement('div', { className: 'flex items-center justify-between mb-4' },
+                                    React.createElement('h2', { className: 'text-sm font-bold text-gray-900 dark:text-white uppercase tracking-wider flex items-center gap-2' }, 
+                                        React.createElement(Icons.FileText), 'Base Prompt'
+                                    ),
+                                    React.createElement('button', {
+                                        onClick: () => setActiveTab('bank'),
+                                        className: 'text-xs text-brand-600 dark:text-brand-400 font-medium hover:underline'
+                                    }, 'Browse Bank →')
+                                ),
+                                React.createElement('div', { className: 'relative mb-3' },
+                                    React.createElement('select', {
+                                        value: selectedBaseId || '',
+                                        onChange: (e) => setSelectedBaseId(e.target.value || null),
+                                        className: 'w-full px-3 py-3 bg-gray-50 dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-xl text-sm focus:outline-none focus:border-brand-500 focus:ring-0 transition-all cursor-pointer appearance-none font-medium'
+                                    }, [
+                                        React.createElement('option', { key: 'empty', value: '' }, 'Pilih base prompt...'),
+                                        ...basePrompts.map(p => React.createElement('option', { key: p.id, value: p.id }, `${p.name} — ${p.category}`))
+                                    ]),
+                                    React.createElement('div', { className: 'absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400' }, React.createElement(Icons.ChevronDown))
+                                ),
+                                selectedBase && React.createElement('div', { className: 'p-3 bg-brand-50 dark:bg-brand-900/10 rounded-xl border border-brand-100 dark:border-brand-800' }, [
+                                    React.createElement('div', { key: 'meta', className: 'flex items-center gap-2 mb-2' }, [
+                                        React.createElement(Badge, { key: 'cat', color: categoryColors[selectedBase.category] || 'gray' }, selectedBase.category),
+                                        selectedBase.tags && selectedBase.tags.map(tag => 
+                                            React.createElement('span', { key: tag, className: 'text-[10px] text-gray-500 dark:text-gray-400' }, `#${tag}`)
+                                        )
+                                    ]),
+                                    React.createElement('p', { key: 'desc', className: 'text-xs text-gray-600 dark:text-gray-300 leading-relaxed' }, selectedBase.description || selectedBase.basePrompt.substring(0, 120) + '...')
+                                ])
+                            ),
+
+                            // Parameters
+                            React.createElement('div', { className: 'bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-5 shadow-sm' },
+                                React.createElement('div', { className: 'flex items-center justify-between mb-4' },
+                                    React.createElement('h2', { className: 'text-sm font-bold text-gray-900 dark:text-white uppercase tracking-wider flex items-center gap-2' }, 
+                                        React.createElement(Icons.Palette), 'Modifikasi Parameter'
+                                    ),
+                                    React.createElement('button', {
+                                        onClick: handleReset,
+                                        className: 'text-xs text-gray-500 hover:text-red-500 transition-colors font-medium'
+                                    }, 'Reset')
+                                ),
+                                React.createElement(TextInput, {
+                                    label: 'Subject / Produk',
+                                    value: params.subject,
+                                    onChange: (v) => updateParam('subject', v),
+                                    placeholder: 'Contoh: premium skincare bottle, wireless earbuds...'
+                                }),
+                                React.createElement('div', { className: 'grid grid-cols-2 gap-3' },
+                                    React.createElement(Select, {
+                                        label: 'Style',
+                                        value: params.style,
+                                        options: PARAMETER_OPTIONS.style,
+                                        onChange: (v) => updateParam('style', v)
+                                    }),
+                                    React.createElement(Select, {
+                                        label: 'Lighting',
+                                        value: params.lighting,
+                                        options: PARAMETER_OPTIONS.lighting,
+                                        onChange: (v) => updateParam('lighting', v)
+                                    })
+                                ),
+                                React.createElement('div', { className: 'grid grid-cols-2 gap-3' },
+                                    React.createElement(Select, {
+                                        label: 'Camera Angle',
+                                        value: params.angle,
+                                        options: PARAMETER_OPTIONS.angle,
+                                        onChange: (v) => updateParam('angle', v)
+                                    }),
+                                    React.createElement(Select, {
+                                        label: 'Background',
+                                        value: params.background,
+                                        options: PARAMETER_OPTIONS.background,
+                                        onChange: (v) => updateParam('background', v)
+                                    })
+                                ),
+                                React.createElement('div', { className: 'grid grid-cols-2 gap-3' },
+                                    React.createElement(Select, {
+                                        label: 'Mood / Vibe',
+                                        value: params.mood,
+                                        options: PARAMETER_OPTIONS.mood,
+                                        onChange: (v) => updateParam('mood', v)
+                                    }),
+                                    React.createElement(Select, {
+                                        label: 'Aspect Ratio',
+                                        value: params.aspectRatio,
+                                        options: PARAMETER_OPTIONS.aspectRatio,
+                                        onChange: (v) => updateParam('aspectRatio', v)
+                                    })
+                                ),
+                                React.createElement('div', { className: 'grid grid-cols-2 gap-3' },
+                                    React.createElement(Select, {
+                                        label: 'Quality',
+                                        value: params.quality,
+                                        options: PARAMETER_OPTIONS.quality,
+                                        onChange: (v) => updateParam('quality', v)
+                                    }),
+                                    React.createElement(Select, {
+                                        label: 'Camera',
+                                        value: params.camera,
+                                        options: PARAMETER_OPTIONS.camera,
+                                        onChange: (v) => updateParam('camera', v)
+                                    })
+                                ),
+                                React.createElement('div', { className: 'grid grid-cols-2 gap-3' },
+                                    React.createElement(Select, {
+                                        label: 'Color Grade',
+                                        value: params.colorGrade,
+                                        options: PARAMETER_OPTIONS.colorGrade,
+                                        onChange: (v) => updateParam('colorGrade', v)
+                                    }),
+                                    React.createElement(Select, {
+                                        label: 'Subject Modifier',
+                                        value: params.subjectModifier,
+                                        options: PARAMETER_OPTIONS.subjectModifier,
+                                        onChange: (v) => updateParam('subjectModifier', v)
+                                    })
+                                ),
+                                React.createElement(TextArea, {
+                                    label: 'Extra Details (Optional)',
+                                    value: extraPrompt,
+                                    onChange: setExtraPrompt,
+                                    placeholder: 'Tambahan instruksi spesifik: composition rules, artist reference, negative prompt, dll...',
+                                    rows: 3
+                                })
+                            )
+                        ),
+
+                        // Right Panel - Preview
+                        React.createElement('div', { className: 'lg:col-span-7 space-y-5' },
+                            // Prompt Preview
+                            React.createElement('div', { className: 'bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-5 shadow-sm' },
+                                React.createElement('div', { className: 'flex items-center justify-between mb-4' },
+                                    React.createElement('h2', { className: 'text-sm font-bold text-gray-900 dark:text-white uppercase tracking-wider flex items-center gap-2' }, 
+                                        React.createElement(Icons.Zap), 'Final Prompt'
+                                    ),
+                                    React.createElement('div', { className: 'flex gap-2' },
+                                        React.createElement(Button, {
+                                            onClick: handleCopy,
+                                            variant: copied ? 'primary' : 'secondary',
+                                            icon: copied ? Icons.Check : Icons.Copy,
+                                            className: copied ? 'bg-green-600 hover:bg-green-700 border-green-600 shadow-green-500/20' : '',
+                                            disabled: !currentPrompt
+                                        }, copied ? 'Copied!' : 'Copy'),
+                                        React.createElement(Button, {
+                                            onClick: () => { addToHistory(); handleCopy(); },
+                                            variant: 'primary',
+                                            icon: Icons.Sparkles,
+                                            disabled: !currentPrompt
+                                        }, 'Generate & Copy')
+                                    )
+                                ),
+                                React.createElement('div', { className: 'relative' },
+                                    React.createElement('div', {
+                                        className: `w-full min-h-[180px] p-4 rounded-xl text-sm leading-relaxed font-mono whitespace-pre-wrap transition-all ${
+                                            currentPrompt 
+                                            ? 'bg-gray-50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200' 
+                                            : 'bg-gray-100 dark:bg-gray-800/50 border-2 border-dashed border-gray-300 dark:border-gray-600 text-gray-400 flex items-center justify-center'
+                                        }`
+                                    }, currentPrompt || 'Pilih base prompt dan isi parameter untuk generate final prompt...')
+                                ),
+                                currentPrompt && React.createElement('div', { className: 'mt-3 flex items-center gap-2 text-xs text-gray-500' }, [
+                                    React.createElement('span', { key: 'len', className: 'px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded-md' }, `${currentPrompt.length} chars`),
+                                    React.createElement('span', { key: 'words', className: 'px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded-md' }, `${currentPrompt.split(/\s+/).length} words`),
+                                    selectedBase && React.createElement('span', { key: 'base', className: 'px-2 py-1 bg-brand-50 dark:bg-brand-900/20 text-brand-600 dark:text-brand-400 rounded-md' }, `Base: ${selectedBase.name}`)
+                                ])
+                            ),
+
+                            // Active Parameters
+                            React.createElement('div', { className: 'bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-5 shadow-sm' },
+                                React.createElement('h3', { className: 'text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3 flex items-center gap-2' }, 
+                                    React.createElement(Icons.Palette), 'Active Parameters'
+                                ),
+                                React.createElement('div', { className: 'flex flex-wrap gap-2' },
+                                    Object.entries(params).filter(([_, v]) => v).map(([key, value]) =>
+                                        React.createElement('span', {
+                                            key: key,
+                                            className: 'inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-brand-50 dark:bg-brand-900/20 text-brand-700 dark:text-brand-300 text-xs font-medium border border-brand-100 dark:border-brand-800'
+                                        }, [
+                                            React.createElement('span', { key: 'k', className: 'opacity-60 uppercase text-[10px]' }, key),
+                                            React.createElement('span', { key: 's', className: 'mx-0.5 opacity-40' }, '→'),
+                                            value
+                                        ])
+                                    ),
+                                    !Object.values(params).some(v => v) && React.createElement('span', { className: 'text-sm text-gray-400 italic' }, 'Belum ada parameter yang dipilih')
+                                )
+                            ),
+
+                            // Save Section
+                            React.createElement('div', { className: 'bg-gradient-to-br from-brand-50 to-purple-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl border border-brand-100 dark:border-gray-700 p-5' },
+                                React.createElement('h3', { className: 'text-xs font-bold text-brand-800 dark:text-brand-300 uppercase tracking-wider mb-3 flex items-center gap-2' }, 
+                                    React.createElement(Icons.Save), 'Simpan Hasil Prompt'
+                                ),
+                                React.createElement('div', { className: 'flex gap-3' },
+                                    React.createElement('input', {
+                                        type: 'text',
+                                        value: promptName,
+                                        onChange: (e) => setPromptName(e.target.value),
+                                        placeholder: 'Nama prompt (contoh: Skincare Summer 2026)',
+                                        className: 'flex-1 px-3 py-2.5 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500'
+                                    }),
+                                    React.createElement(Button, {
+                                        onClick: handleSave,
+                                        variant: 'primary',
+                                        icon: Icons.Save,
+                                        disabled: !promptName.trim() || !currentPrompt
+                                    }, 'Save')
+                                )
+                            ),
+
+                            // Tips
+                            React.createElement('div', { className: 'bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-5 shadow-sm' },
+                                React.createElement('h3', { className: 'text-sm font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2' }, 
+                                    React.createElement(Icons.Sparkles), 'Pro Tips'
+                                ),
+                                React.createElement('div', { className: 'grid grid-cols-1 sm:grid-cols-2 gap-3' }, [
+                                    React.createElement('div', { key: 1, className: 'p-3 bg-gray-50 dark:bg-gray-900/50 rounded-xl' }, [
+                                        React.createElement('h4', { className: 'text-xs font-bold text-gray-700 dark:text-gray-300 mb-1' }, 'Subject Spesifik'),
+                                        React.createElement('p', { className: 'text-xs text-gray-500 dark:text-gray-400' }, '"matte black perfume bottle" > "bottle"')
+                                    ]),
+                                    React.createElement('div', { key: 2, className: 'p-3 bg-gray-50 dark:bg-gray-900/50 rounded-xl' }, [
+                                        React.createElement('h4', { className: 'text-xs font-bold text-gray-700 dark:text-gray-300 mb-1' }, 'Kombinasi Kuat'),
+                                        React.createElement('p', { className: 'text-xs text-gray-500 dark:text-gray-400' }, 'Lighting + Color Grade = mood yang kuat')
+                                    ]),
+                                    React.createElement('div', { key: 3, className: 'p-3 bg-gray-50 dark:bg-gray-900/50 rounded-xl' }, [
+                                        React.createElement('h4', { className: 'text-xs font-bold text-gray-700 dark:text-gray-300 mb-1' }, 'Artist Reference'),
+                                        React.createElement('p', { className: 'text-xs text-gray-500 dark:text-gray-400' }, 'Tambah di Extra Details untuk style unik')
+                                    ]),
+                                    React.createElement('div', { key: 4, className: 'p-3 bg-gray-50 dark:bg-gray-900/50 rounded-xl' }, [
+                                        React.createElement('h4', { className: 'text-xs font-bold text-gray-700 dark:text-gray-300 mb-1' }, 'Import dari Sheets'),
+                                        React.createElement('p', { className: 'text-xs text-gray-500 dark:text-gray-400' }, 'Copy CSV dari Google Sheets ke Base Prompt Bank')
+                                    ])
+                                ])
+                            )
+                        )
+                    ),
+
+                    // ====== BANK TAB ======
+                    activeTab === 'bank' && React.createElement('div', { className: 'space-y-6 animate-fade-in' },
+                        React.createElement('div', { className: 'flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between' },
+                            React.createElement('div', null,
+                                React.createElement('h2', { className: 'text-2xl font-bold text-gray-900 dark:text-white' }, 'Base Prompt Bank'),
+                                React.createElement('p', { className: 'text-sm text-gray-500 dark:text-gray-400 mt-1' }, `${basePrompts.length} base prompt tersedia • Import dari Google Sheets atau tambah manual`)
+                            ),
+                            React.createElement('div', { className: 'flex gap-2' },
+                                React.createElement(Button, { onClick: () => setShowImportModal(true), variant: 'secondary', icon: Icons.Upload }, 'Import Sheets'),
+                                React.createElement(Button, { onClick: () => setShowAddModal(true), variant: 'primary', icon: Icons.Plus }, 'Add New')
+                            )
+                        ),
+
+                        // Filters
+                        React.createElement('div', { className: 'flex flex-col sm:flex-row gap-3' },
+                            React.createElement('input', {
+                                type: 'text',
+                                value: searchBank,
+                                onChange: (e) => setSearchBank(e.target.value),
+                                placeholder: 'Cari base prompt...',
+                                className: 'flex-1 px-4 py-2.5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500'
+                            }),
+                            React.createElement('div', { className: 'flex gap-1.5 overflow-x-auto scrollbar-hide pb-1' },
+                                categories.map(cat => 
+                                    React.createElement('button', {
+                                        key: cat,
+                                        onClick: () => setFilterCategory(cat),
+                                        className: `px-3 py-2 rounded-lg text-xs font-medium whitespace-nowrap transition-all ${
+                                            filterCategory === cat
+                                            ? 'bg-brand-600 text-white'
+                                            : 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700'
+                                        }`
+                                    }, cat)
+                                )
+                            )
+                        ),
+
+                        // Grid
+                        React.createElement('div', { className: 'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5' },
+                            filteredBank.map(template => React.createElement('div', {
+                                key: template.id,
+                                className: `prompt-card group bg-white dark:bg-gray-800 rounded-2xl border-2 p-5 shadow-sm ${
+                                    selectedBaseId === template.id 
+                                    ? 'border-brand-500 dark:border-brand-400 ring-2 ring-brand-500/20' 
+                                    : 'border-gray-200 dark:border-gray-700 hover:border-brand-300 dark:hover:border-brand-700'
+                                }`
+                            }, [
+                                React.createElement('div', { key: 'header', className: 'flex items-start justify-between mb-3' }, [
+                                    React.createElement('div', { className: 'flex items-center gap-2' }, [
+                                        React.createElement('div', { className: `w-9 h-9 rounded-lg flex items-center justify-center text-white text-xs font-bold ${template.isDefault ? 'gradient-bg' : 'bg-accent-500'}` },
+                                            template.name.charAt(0).toUpperCase()
+                                        ),
+                                        React.createElement('div', null,
+                                            React.createElement('h3', { className: 'font-bold text-gray-900 dark:text-white text-sm leading-tight' }, template.name),
+                                            React.createElement('p', { className: 'text-[11px] text-gray-500 dark:text-gray-400' }, template.category)
+                                        )
+                                    ]),
+                                    React.createElement('div', { className: 'flex gap-1' }, [
+                                        !template.isDefault && React.createElement('button', {
+                                            onClick: () => setEditingPrompt(template),
+                                            className: 'p-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-500 transition-colors',
+                                            title: 'Edit'
+                                        }, React.createElement(Icons.Edit)),
+                                        !template.isDefault && React.createElement('button', {
+                                            onClick: () => handleDeleteBase(template.id),
+                                            className: 'p-1.5 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/20 text-red-500 transition-colors',
+                                            title: 'Delete'
+                                        }, React.createElement(Icons.Trash))
+                                    ])
+                                ]),
+                                React.createElement('p', { key: 'desc', className: 'text-xs text-gray-600 dark:text-gray-300 mb-3 line-clamp-2 leading-relaxed' }, 
+                                    template.description || template.basePrompt.substring(0, 100) + '...'
+                                ),
+                                React.createElement('div', { key: 'tags', className: 'flex flex-wrap gap-1 mb-4' },
+                                    (template.tags || []).map(tag => 
+                                        React.createElement('span', { key: tag, className: 'px-2 py-0.5 rounded-md bg-gray-100 dark:bg-gray-700 text-[10px] text-gray-600 dark:text-gray-300' }, `#${tag}`)
+                                    )
+                                ),
+                                React.createElement('div', { key: 'footer', className: 'pt-3 border-t border-gray-100 dark:border-gray-700 flex items-center justify-between' }, [
+                                    React.createElement('span', { className: 'text-[11px] text-gray-400' }, `${template.basePrompt.length} chars`),
+                                    React.createElement('button', {
+                                        onClick: () => {
+                                            setSelectedBaseId(template.id);
+                                            setActiveTab('builder');
+                                        },
+                                        className: 'px-3 py-1.5 rounded-lg bg-brand-50 dark:bg-brand-900/20 text-brand-600 dark:text-brand-400 text-xs font-semibold hover:bg-brand-100 dark:hover:bg-brand-900/30 transition-colors flex items-center gap-1'
+                                    }, ['Use Base →'])
+                                ])
+                            ]))
+                        ),
+                        filteredBank.length === 0 && React.createElement('div', { className: 'text-center py-16 bg-white dark:bg-gray-800 rounded-2xl border border-dashed border-gray-300 dark:border-gray-700' }, [
+                            React.createElement('div', { key: 'icon', className: 'w-14 h-14 mx-auto mb-3 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-gray-400' }, React.createElement(Icons.Grid)),
+                            React.createElement('h3', { key: 'title', className: 'text-base font-medium text-gray-900 dark:text-white mb-1' }, 'Gak ada base prompt'),
+                            React.createElement('p', { key: 'desc', className: 'text-sm text-gray-500 dark:text-gray-400' }, 'Import dari Google Sheets atau tambah manual')
+                        ])
+                    ),
+
+                    // ====== SAVED TAB ======
+                    activeTab === 'saved' && React.createElement('div', { className: 'space-y-6 animate-fade-in' },
+                        React.createElement('div', { className: 'flex items-center justify-between' },
+                            React.createElement('div', null,
+                                React.createElement('h2', { className: 'text-2xl font-bold text-gray-900 dark:text-white' }, 'My Prompts'),
+                                React.createElement('p', { className: 'text-sm text-gray-500 dark:text-gray-400 mt-1' }, `${savedPrompts.length} prompt tersimpan`)
+                            )
+                        ),
+                        savedPrompts.length === 0 ? 
+                        React.createElement('div', { className: 'text-center py-20 bg-white dark:bg-gray-800 rounded-2xl border border-dashed border-gray-300 dark:border-gray-700' }, [
+                            React.createElement('div', { key: 'icon', className: 'w-16 h-16 mx-auto mb-4 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-gray-400' }, React.createElement(Icons.Save)),
+                            React.createElement('h3', { key: 'title', className: 'text-lg font-medium text-gray-900 dark:text-white mb-1' }, 'Belum ada prompt tersimpan'),
+                            React.createElement('p', { key: 'desc', className: 'text-sm text-gray-500 dark:text-gray-400' }, 'Build prompt di Prompt Builder dan save untuk digunakan nanti')
+                        ]) :
+                        React.createElement('div', { className: 'grid grid-cols-1 md:grid-cols-2 gap-4' },
+                            savedPrompts.map(prompt => React.createElement('div', {
+                                key: prompt.id,
+                                className: 'bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-5 shadow-sm hover:shadow-md transition-all'
+                            }, [
+                                React.createElement('div', { key: 'header', className: 'flex items-start justify-between mb-3' }, [
+                                    React.createElement('div', null,
+                                        React.createElement('h3', { className: 'font-bold text-gray-900 dark:text-white' }, prompt.name),
+                                        React.createElement('div', { className: 'flex items-center gap-2 mt-1' }, [
+                                            prompt.baseName && React.createElement('span', { className: 'text-[10px] px-2 py-0.5 rounded-md bg-brand-50 dark:bg-brand-900/20 text-brand-600 dark:text-brand-400' }, prompt.baseName),
+                                            React.createElement('span', { className: 'text-[10px] text-gray-400' }, new Date(prompt.createdAt).toLocaleDateString('id-ID'))
+                                        ])
+                                    ),
+                                    React.createElement('div', { className: 'flex gap-1' }, [
+                                        React.createElement('button', {
+                                            onClick: () => handleLoadSaved(prompt),
+                                            className: 'p-1.5 rounded-lg hover:bg-brand-50 dark:hover:bg-brand-900/20 text-brand-600 dark:text-brand-400 transition-colors',
+                                            title: 'Load prompt'
+                                        }, React.createElement(Icons.Sparkles)),
+                                        React.createElement('button', {
+                                            onClick: () => {
+                                                navigator.clipboard.writeText(prompt.finalPrompt);
+                                                setCopied(true);
+                                                setTimeout(() => setCopied(false), 2000);
+                                            },
+                                            className: 'p-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-500 transition-colors',
+                                            title: 'Copy'
+                                        }, React.createElement(Icons.Copy)),
+                                        React.createElement('button', {
+                                            onClick: () => handleDeleteSaved(prompt.id),
+                                            className: 'p-1.5 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/20 text-red-500 transition-colors',
+                                            title: 'Delete'
+                                        }, React.createElement(Icons.Trash))
+                                    ])
+                                ]),
+                                React.createElement('p', { key: 'preview', className: 'text-sm text-gray-600 dark:text-gray-300 line-clamp-3 mb-3 font-mono bg-gray-50 dark:bg-gray-900/50 p-3 rounded-xl text-xs leading-relaxed' }, 
+                                    prompt.finalPrompt
+                                ),
+                                React.createElement('div', { key: 'params', className: 'flex flex-wrap gap-1.5' },
+                                    Object.entries(prompt.params).filter(([_, v]) => v).slice(0, 5).map(([key, val]) =>
+                                        React.createElement('span', {
+                                            key: key,
+                                            className: 'px-2 py-0.5 rounded-md bg-gray-100 dark:bg-gray-700 text-[10px] text-gray-600 dark:text-gray-300'
+                                        }, `${key}: ${val}`)
+                                    )
+                                )
+                            ]))
+                        )
+                    ),
+
+                    // ====== HISTORY TAB ======
+                    activeTab === 'history' && React.createElement('div', { className: 'space-y-6 animate-fade-in' },
+                        React.createElement('div', { className: 'flex items-center justify-between' },
+                            React.createElement('div', null,
+                                React.createElement('h2', { className: 'text-2xl font-bold text-gray-900 dark:text-white' }, 'History'),
+                                React.createElement('p', { className: 'text-sm text-gray-500 dark:text-gray-400 mt-1' }, `${history.length} prompt yang pernah digenerate`)
+                            ),
+                            history.length > 0 && React.createElement(Button, {
+                                onClick: () => setHistory([]),
+                                variant: 'danger',
+                                icon: Icons.Trash
+                            }, 'Clear All')
+                        ),
+                        history.length === 0 ? 
+                        React.createElement('div', { className: 'text-center py-20 bg-white dark:bg-gray-800 rounded-2xl border border-dashed border-gray-300 dark:border-gray-700' }, [
+                            React.createElement('div', { key: 'icon', className: 'w-16 h-16 mx-auto mb-4 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-gray-400' }, React.createElement(Icons.History)),
+                            React.createElement('h3', { key: 'title', className: 'text-lg font-medium text-gray-900 dark:text-white mb-1' }, 'Belum ada history'),
+                            React.createElement('p', { key: 'desc', className: 'text-sm text-gray-500 dark:text-gray-400' }, 'Generate prompt akan otomatis tersimpan di sini')
+                        ]) :
+                        React.createElement('div', { className: 'space-y-3' },
+                            history.map((entry, idx) => React.createElement('div', {
+                                key: entry.id,
+                                className: 'bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4 hover:shadow-sm transition-all'
+                            }, [
+                                React.createElement('div', { key: 'top', className: 'flex items-start justify-between mb-2' }, [
+                                    React.createElement('div', { className: 'flex items-center gap-2' }, [
+                                        React.createElement('span', { className: 'text-xs font-mono text-gray-400 bg-gray-100 dark:bg-gray-700 px-1.5 py-0.5 rounded' }, `#${history.length - idx}`),
+                                        entry.baseName && React.createElement('span', { className: 'text-[10px] px-2 py-0.5 rounded-md bg-brand-50 dark:bg-brand-900/20 text-brand-600 dark:text-brand-400' }, entry.baseName),
+                                        React.createElement('span', { className: 'text-xs text-gray-400' }, new Date(entry.timestamp).toLocaleString('id-ID', { hour: '2-digit', minute: '2-digit', day: 'numeric', month: 'short' }))
+                                    ]),
+                                    React.createElement('button', {
+                                        onClick: () => {
+                                            navigator.clipboard.writeText(entry.prompt);
+                                            setCopied(true);
+                                            setTimeout(() => setCopied(false), 2000);
+                                        },
+                                        className: 'p-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-500 transition-colors'
+                                    }, React.createElement(Icons.Copy))
+                                ]),
+                                React.createElement('p', { key: 'text', className: 'text-sm text-gray-700 dark:text-gray-300 font-mono leading-relaxed text-xs' }, entry.prompt)
+                            ]))
+                        )
+                    )
+                ),
+
+                // Footer
+                React.createElement('footer', { className: 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 text-center' },
+                    React.createElement('p', { className: 'text-xs text-gray-400 dark:text-gray-600' }, 'Prompt Builder by Yogienugr • All data stored locally in your browser')
+                ),
+
+                // Import Modal
+                React.createElement(Modal, {
+                    isOpen: showImportModal,
+                    onClose: () => { setShowImportModal(false); setImportText(''); setImportError(''); },
+                    title: 'Import dari Google Sheets',
+                    maxWidth: 'max-w-xl'
+                }, [
+                    React.createElement('div', { key: 'info', className: 'mb-4 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-xl border border-blue-100 dark:border-blue-800' },
+                        React.createElement('p', { className: 'text-xs text-blue-800 dark:text-blue-300 leading-relaxed' }, 
+                            '1. Buka Google Sheets → File → Download → CSV\n2. Copy isi CSV file\n3. Paste di bawah ini\n\nFormat kolom: name, category, basePrompt, description, tags'
+                        )
+                    ),
+                    React.createElement('textarea', {
+                        key: 'input',
+                        value: importText,
+                        onChange: (e) => setImportText(e.target.value),
+                        placeholder: 'Paste CSV atau JSON dari Google Sheets di sini...',
+                        rows: 8,
+                        className: 'w-full px-3 py-2 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl text-sm font-mono focus:outline-none focus:ring-2 focus:ring-brand-500 resize-none'
+                    }),
+                    importError && React.createElement('p', { key: 'error', className: 'mt-2 text-xs text-red-500' }, importError),
+                    React.createElement('div', { key: 'actions', className: 'flex justify-end gap-2 mt-4' }, [
+                        React.createElement(Button, { key: 'cancel', onClick: () => setShowImportModal(false), variant: 'secondary' }, 'Cancel'),
+                        React.createElement(Button, { key: 'import', onClick: handleImport, variant: 'primary', icon: Icons.Upload }, 'Import Data')
+                    ])
+                ]),
+
+                // Add/Edit Base Prompt Modal
+                React.createElement(BasePromptModal, {
+                    isOpen: showAddModal || !!editingPrompt,
+                    onClose: () => { setShowAddModal(false); setEditingPrompt(null); },
+                    onSave: editingPrompt ? handleUpdateBase : handleAddBase,
+                    initialData: editingPrompt
+                })
+            );
+        };
+
+        // ===================== BASE PROMPT MODAL COMPONENT =====================
+        const BasePromptModal = ({ isOpen, onClose, onSave, initialData }) => {
+            if (!isOpen) return null;
+
+            const [form, setForm] = useState(initialData || {
+                name: '',
+                category: '',
+                basePrompt: '',
+                description: '',
+                tags: []
+            });
+            const [tagInput, setTagInput] = useState('');
+
+            const updateField = (field, value) => {
+                setForm(prev => ({ ...prev, [field]: value }));
+            };
+
+            const addTag = () => {
+                if (tagInput.trim() && !form.tags.includes(tagInput.trim())) {
+                    setForm(prev => ({ ...prev, tags: [...prev.tags, tagInput.trim()] }));
+                    setTagInput('');
+                }
+            };
+
+            const removeTag = (tag) => {
+                setForm(prev => ({ ...prev, tags: prev.tags.filter(t => t !== tag) }));
+            };
+
+            const handleSubmit = () => {
+                if (!form.name.trim() || !form.basePrompt.trim()) return;
+                onSave(form);
+            };
+
+            return React.createElement('div', { className: 'fixed inset-0 z-50 flex items-center justify-center p-4' }, [
+                React.createElement('div', { key: 'backdrop', className: 'absolute inset-0 bg-black/50 backdrop-blur-sm', onClick: onClose }),
+                React.createElement('div', { key: 'modal', className: 'relative bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto animate-fade-in' }, [
+                    React.createElement('div', { key: 'header', className: 'flex items-center justify-between p-5 border-b border-gray-100 dark:border-gray-700' }, [
+                        React.createElement('h3', { className: 'text-lg font-bold text-gray-900 dark:text-white' }, initialData ? 'Edit Base Prompt' : 'Tambah Base Prompt Baru'),
+                        React.createElement('button', { onClick: onClose, className: 'p-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-500 transition-colors' }, React.createElement(Icons.X))
+                    ]),
+                    React.createElement('div', { key: 'body', className: 'p-5 space-y-4' }, [
+                        React.createElement(TextInput, {
+                            label: 'Nama Base Prompt',
+                            value: form.name,
+                            onChange: (v) => updateField('name', v),
+                            placeholder: 'Contoh: Product Hero Shot'
+                        }),
+                        React.createElement('div', { className: 'grid grid-cols-2 gap-4' }, [
+                            React.createElement(TextInput, {
+                                label: 'Kategori',
+                                value: form.category,
+                                onChange: (v) => updateField('category', v),
+                                placeholder: 'Contoh: Product Photo'
+                            }),
+                            React.createElement(TextInput, {
+                                label: 'Deskripsi',
+                                value: form.description,
+                                onChange: (v) => updateField('description', v),
+                                placeholder: 'Deskripsi singkat...'
+                            })
+                        ]),
+                        React.createElement(TextArea, {
+                            label: 'Base Prompt Template',
+                            value: form.basePrompt,
+                            onChange: (v) => updateField('basePrompt', v),
+                            placeholder: 'Tulis base prompt di sini. Gunakan {subject} sebagai placeholder untuk subject/produk yang akan diganti.\n\nContoh: A premium {subject} photographed in minimalist studio...',
+                            rows: 5
+                        }),
+                        React.createElement('div', null, [
+                            React.createElement('label', { key: 'l', className: 'block text-[11px] font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1' }, 'Tags'),
+                            React.createElement('div', { key: 'input-wrap', className: 'flex gap-2 mb-2' }, [
+                                React.createElement('input', {
+                                    type: 'text',
+                                    value: tagInput,
+                                    onChange: (e) => setTagInput(e.target.value),
+                                    onKeyDown: (e) => e.key === 'Enter' && (e.preventDefault(), addTag()),
+                                    placeholder: 'Tambah tag...',
+                                    className: 'flex-1 px-3 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-500'
+                                }),
+                                React.createElement(Button, { onClick: addTag, variant: 'secondary' }, 'Add')
+                            ]),
+                            React.createElement('div', { key: 'tags', className: 'flex flex-wrap gap-1.5' },
+                                form.tags.map(tag => React.createElement('span', {
+                                    key: tag,
+                                    className: 'inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-brand-50 dark:bg-brand-900/20 text-brand-700 dark:text-brand-300 text-xs font-medium'
+                                }, [
+                                    tag,
+                                    React.createElement('button', { key: 'x', onClick: () => removeTag(tag), className: 'hover:text-red-500 transition-colors' }, '×')
+                                ]))
+                            )
+                        ])
+                    ]),
+                    React.createElement('div', { key: 'footer', className: 'flex justify-end gap-2 p-5 border-t border-gray-100 dark:border-gray-700' }, [
+                        React.createElement(Button, { onClick: onClose, variant: 'secondary' }, 'Cancel'),
+                        React.createElement(Button, { 
+                            onClick: handleSubmit, 
+                            variant: 'primary', 
+                            icon: Icons.Save,
+                            disabled: !form.name.trim() || !form.basePrompt.trim()
+                        }, initialData ? 'Update' : 'Simpan')
+                    ])
+                ])
+            ]);
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(React.createElement(App));
+    </script>
+</body>
+</html>
